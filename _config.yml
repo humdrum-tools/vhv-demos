@@ -1,5 +1,8 @@
 markdown: kramdown
-highlighter: rogue
+highlighter: rouge
+kramdown:
+  input: GFM
+  hand_warp: false
 
 baseurl: http://www.humdrum.org/vhv-demos
 
