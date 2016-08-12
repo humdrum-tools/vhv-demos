@@ -17,11 +17,6 @@ To implement this page, copy and paste the following text into an HTML file,
 and then vew the page in a web browser.
 
 
-```bash
-test run
-
-```
-
 ```html
 <html>
 <head>

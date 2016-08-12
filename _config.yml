@@ -1,1 +1,5 @@
+markdown: kramdown
+highlighter: rogue
+
 baseurl: http://www.humdrum.org/vhv-demos
+
