@@ -16,6 +16,7 @@
 //
 
 function generateCodeSpaces() {
+console.log("ADDING LINE NUMBERS");
 	var prec = document.querySelectorAll("pre");
 	var line;
 	var precx
@@ -26,6 +27,7 @@ function generateCodeSpaces() {
 			continue;
 		}
 
+console.log("ADDING LINE NUMBERS FOR REAL", code);
 		var content = code.textContent;
 
 		// content = content.replace(/^\s{56}/gm, "\t\t\t\t\t\t\t");
