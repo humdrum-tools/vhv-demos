@@ -4,7 +4,11 @@
 		<a id="forkme_banner" href="https://github.com/humdrum-tools/vhv-demos">View on GitHub</a>
 
 		<h1 id="project_title">VHV Demos</h1>
-		<h2 id="project_tagline">Example implementations of the Verovio Humdrum Viewer</h2>
+		{% if page.title %}
+			<h2 id="project_tagline">{{page.title}}</h2>
+		{% else %}
+			<h2 id="project_tagline">Example implementations of the Verovio Humdrum Viewer</h2>
+		{% endif %}
 
 		<section id="downloads">
 			<a class="zip_download_link" href="https://github.com/humdrum-tools/vhv-demos/zipball/master">Download this project as a .zip file</a>

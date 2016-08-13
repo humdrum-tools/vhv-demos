@@ -7,7 +7,7 @@
 
 Here is a short musical example:
 
-<script id="input" type="text/humdrum"> 
+<script id="input" type="text/humdrum">
 **kern	**kern
 *clefF4	*clefG2
 *k[f#]	*k[f#]
@@ -27,25 +27,26 @@ Here is a short musical example:
 <div id="output"></div>
 
 <script>
-        var vrvToolkit = new verovio.toolkit();
-        var Input = document.querySelector("#input");
-        var Output = document.querySelector("#output");
-        document.addEventListener("DOMContentLoaded", displayNotation);
+	var vrvToolkit = new verovio.toolkit();
+	var Input = document.querySelector("#input");
+	var Output = document.querySelector("#output");
+	document.addEventListener("DOMContentLoaded", displayNotation);
 
-        function displayNotation() {
-                var data = Input.textContent.replace(/^\s+/, "");
-                var options = {
-                        inputFormat: "auto",
-                        adjustPageHeight: 1,
-                        pageHeight: 1000,
-                        pageWidth:  1000,
-                        scale:  40,
-                        font: "Leipzig"
-                };
+	function displayNotation() {
+		var data = Input.textContent.replace(/^\s+/, "");
+		var options = {
+			inputFormat: "auto",
+			adjustPageHeight: 1,
+			pageHeight: 1000,
+			pageWidth:  1000,
+			scale:  40,
+			border:  40,
+			font: "Leipzig"
+		};
 
-                var svg = vrvToolkit.renderData(data, JSON.stringify(options));
-                Output.innerHTML = svg;
-        }
+		var svg = vrvToolkit.renderData(data, JSON.stringify(options));
+		Output.innerHTML = svg;
+	}
 
 </script>
 

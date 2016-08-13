@@ -2,6 +2,16 @@
 	<meta charset='utf-8'>
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<meta name="description" content="Vhv-demos : Example implementations of the verovio-humdrum-viewer">
-	<link rel="stylesheet" type="text/css" media="screen" href="http://www.humdrum.org/vhv-demos/stylesheets/stylesheet.css">
+	
+	{% if site.environment == "dev" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/stylesheet.css">
+		<script src="/scripts/listeners-common.js"></script>
+		<script src="/scripts/main-common.js"></script>
+	{% else %}
+		<link rel="stylesheet" type="text/css" media="screen" href="http://www.humdrum.org/vhv-demos/stylesheets/stylesheet.css">
+		<script src="htt://www.humdrum.org/vhv/demos/scripts/listeners-common.js"></script>
+		<script src="htt://www.humdrum.org/vhv/demos/scripts/main-common.js"></script>
+	{% endif %}
+
 	<title>VHV Demos</title>
 </head>

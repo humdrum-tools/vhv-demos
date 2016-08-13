@@ -6,5 +6,5 @@ kramdown:
   input: GFM
   hard_wrap: false
 
-environment: prod
+environment: dev
 

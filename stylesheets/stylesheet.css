@@ -59,8 +59,16 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	margin: 10px 0;
+	margin: 50px 0 20px 0;
 	font-weight: 700;
+	color:#222222;
+	font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+	letter-spacing: -1px;
+}
+
+h4, h5, h6 {
+	margin: 10px 0 10px 0;
+	font-weight: 300;
 	color:#222222;
 	font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
 	letter-spacing: -1px;
@@ -94,7 +102,7 @@ h6 {
 }
 
 p {
-	margin: 10px 0 15px 0;
+	margin: 10px 0 30px 0;
 }
 
 footer p {
@@ -161,6 +169,7 @@ pre, code {
 	width: 100%;
 	color: #222;
 	background-color: #fff;
+	line-height: 20px;
 
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 	font-size: 14px;
@@ -172,6 +181,7 @@ pre, code {
 
 pre {
 	width: 100%;
+	line-height: 20px;
 	padding: 10px;
 	box-shadow: 0 0 10px rgba(0,0,0,.1);
 	overflow: auto;
@@ -184,6 +194,7 @@ code {
 }
 
 pre code {
+	line-height: 20px;
 	display: block;
 	box-shadow: none;
 }
@@ -266,7 +277,7 @@ Full-Width Styles
 
 .inner {
 	position: relative;
-	max-width: 640px;
+	max-width: 850px;
 	padding: 20px 10px;
 	margin: 0 auto;
 }
@@ -300,7 +311,7 @@ Full-Width Styles
 }
 
 #project_title {
-	margin: 0;
+	margin: 0 !important; 
 	color: #fff;
 	font-size: 42px;
 	font-weight: 700;
@@ -308,6 +319,7 @@ Full-Width Styles
 }
 
 #project_tagline {
+	margin: 0 !important; 
 	color: #fff;
 	font-size: 24px;
 	font-weight: 300;
@@ -420,6 +432,7 @@ Small Device Styles
 	}
 
 	code, pre {
+		line-height: 20px;
 		min-width: 320px;
 		max-width: 480px;
 		font-size: 11px;
@@ -436,8 +449,36 @@ iframe {
 
 
 code {
-	-moz-tab-size: 3;
-	-o-tab-size: 3;
-	tab-size: 3;
+	-moz-tab-size: 12;
+	-o-tab-size: 12;
+	tab-size: 12;
 }
+
+td.code {
+	padding:0;
+	margin:0;
+	border: 1px solid #ccc;
+}
+
+td.numbers {
+	text-align: right;
+	color: #eee;
+	background: #aac;
+	line-height: 20px;
+	border: 1px solid #ccc;
+}
+
+table.code {
+	border-collapse: collapse;
+	border-color: #aaa;
+}
+
+
+td > pre {
+	padding-right: 0;
+	padding-left: 0;
+	magin-right: 0;
+}
+
+
 
