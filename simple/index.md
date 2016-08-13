@@ -1,19 +1,17 @@
 ---
 layout: default
-title: VHV demo&colon; single static image
+title: single static image
 ---
 
-# Single static image
-
-This is the simplest configuration for displaying Humdrum files: a
-single static images created from a single Humdrum file embedded
+This example is the simplest configuration for displaying Humdrum files: a
+single static images created dynamically from a Humdrum file embedded
 inside of the webpage.
 
-
 <iframe width="400" height="300" src="demo.html"></iframe>
+* <a href="demo.html">stand-alone demo page</a>
+* <a href="https://github.com/humdrum-tools/vhv-demos/blob/gh-pages/simple/demo.html">view source code on Github</a>
 
-
-To implement this page, copy and paste the following text into an HTML file,
+To implement this example, copy and paste the following text into an HTML file,
 and then vew the page in a web browser.
 
 
@@ -50,7 +48,6 @@ Here is a short musical example:
         var vrvToolkit = new verovio.toolkit();
         var Input = document.querySelector("#input");
         var Output = document.querySelector("#output");
-        var Page = 1;
         document.addEventListener("DOMContentLoaded", displayNotation);
 
         function displayNotation() {
@@ -73,6 +70,22 @@ Here is a short musical example:
 </body>
 </html>
 ```
+
+The Humdrum file i stored in a script element with the ID `input`.  This content
+is extracted from the page with the line:
+
+```javascript
+   var data = Input.textContent.replace(/^\s+/, "");
+```
+
+In this case the `replace()` function filters out any spaces (and newlines) 
+at the start of the data.  This is needed since the linebreak after the
+opening element is included in the text content.  Alternatively the first line
+of the Humdrum file content could be placed on the same line as the opening 
+tag of the script element.   The initial the newline will be ignored, but
+included harmlessly in the Humdum content if you set the option 
+`inputFormat: "humdrum"`.
+
 
 
 
