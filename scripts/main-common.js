@@ -16,18 +16,13 @@
 //
 
 function generateCodeSpaces() {
-console.log("ADDING LINE NUMBERS");
 	var prec = document.querySelectorAll("pre");
 	var line;
 	var precx
 	var newcolumn;
 	for (var i=0; i<prec.length; i++) {
    	var code = prec[i].querySelector("code");
-		if ((!code) || (!code.className) || code.className.match(/^\s*$/)) {
-			continue;
-		}
 
-console.log("ADDING LINE NUMBERS FOR REAL", code);
 		var content = code.textContent;
 
 		// content = content.replace(/^\s{56}/gm, "\t\t\t\t\t\t\t");
@@ -45,6 +40,10 @@ console.log("ADDING LINE NUMBERS FOR REAL", code);
 		content = content.replace(/^\t\t\t/gm, "         ");
 		content = content.replace(/^\t\t/gm, "      ");
 		content = content.replace(/^\t/gm, "   ");
+
+		// if ((!code) || (!code.className) || code.className.match(/^\s*$/)) {
+		//		continue;
+		//	}
 
 		var splitcontent = content.split(/[\r\n]/g);
 		if (splitcontent.length > 5) {
