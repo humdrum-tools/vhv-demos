@@ -71,7 +71,7 @@ Here is a short musical example:
 </html>
 ```
 
-The Humdrum file i stored in a script element with the ID `input`.  This content
+The Humdrum file is stored in a script element with the ID `input`.  This content
 is extracted from the page with the line:
 
 ```javascript
