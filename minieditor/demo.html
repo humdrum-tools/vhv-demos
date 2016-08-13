@@ -1,0 +1,58 @@
+
+<html>
+<head>
+<title>Mini-editor</title>
+<script src="http://verovio-script.humdrum.org/scripts/verovio-toolkit.js"></script>
+</head>
+<body>
+
+<table>
+<tr>
+<td>
+<textarea id="input">
+**kern
+*clefG2
+*M4/4
+=1-
+1c;
+==
+*-
+</textarea>
+</td>
+<td>
+<div id="output"></div>
+</td>
+</tr>
+</table>
+
+<script>
+   var vrvToolkit = new verovio.toolkit();
+   var Input = document.querySelector("#input");
+   var Output = document.querySelector("#output");
+   Input.addEventListener("keyup", displayNotation);
+   document.addEventListener("DOMContentLoaded", displayNotation);
+
+   function displayNotation() {
+      var data = Input.value;
+      var options = {
+         inputFormat: "auto",
+         adjustPageHeight: 1,
+         pageHeight: 60000,
+         pageWidth:  2500,
+         scale:  40,    
+         font: "Leipzig"
+      };        
+
+      var svg = vrvToolkit.renderData(data, JSON.stringify(options));
+      Output.innerHTML = svg;
+   }    
+
+</script>
+
+<style>
+textarea { width: 100px; height: 150px; }
+td { vertical-align: top; }
+</style>
+
+</body>
+</html>

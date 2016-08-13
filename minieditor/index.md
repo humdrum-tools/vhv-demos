@@ -1,76 +1,84 @@
 ---
 layout: default
-title:  single in-browser generated image
-github: https://github.com/humdrum-tools/vhv-demos/blob/gh-pages/simple/demo.html
+title:  miniature Humdrum editor
+github: https://github.com/humdrum-tools/vhv-demos/blob/gh-pages/miniedit/demo.html
 ---
 
-This example shows the simplest method for displaying Humdrum
-files as musical notation generated within the web browser.
-Only a single image is generated on the page from a single
-Humdrum file embedded within the webpage.
+This example shows how to create a very simple online editor for
+Humdrum files.  As the Humdrum data is typed into the text box, the
+verovio notation engine renders it as graphical notation.
+Try altering the Humdrum data in the following embedded version
+of the demo:
 
 <iframe width="350" height="250" src="demo.html"></iframe>
 * <a href="demo.html">view stand-alone demo page</a>
 * <a href="https://github.com/humdrum-tools/vhv-demos/blob/gh-pages/simple/demo.html">view source code on Github</a>
 
 
-Of course, this is not a very efficient implementation, since the
-verovio toolkit at about 1 MB in transfer size has to be first
-downloaded to the webpage before the notation can be generation.
-To implement this example, copy and paste the following text into
-an HTML file, and then view the page in a web browser.
+Notice that the text box can be resized by dragging the lower
+right corner of the text box.
 
+The [Verovio Humdrum Viewer](http://verovio.humdrum.org) has more
+features, but you can use this example as a starting point for
+building your own editor. This basic editor is also useful for
+entering simple monophonic music, which can then be saved to a file
+by copying and pasting it from the text box.  To implement this
+example, copy and paste the following text into an HTML file:
 
 ```html
 <html>
 <head>
-<title>SimpleViewer</title>
+<title>Mini-editor</title>
 <script src="http://verovio-script.humdrum.org/scripts/verovio-toolkit.js"></script>
 </head>
 <body>
 
-Here is a short musical example:
-
-<script id="input" type="text/humdrum"> 
-**kern	**kern
-*clefF4	*clefG2
-*k[f#]	*k[f#]
-*M4/4	*M4/4
-=-	=-
-8GL	8ddL
-8AJ	8ccJ
-16BLL	2.b;
-16A	.
-16G	.
-16F#JJ	.
-2G;	.
-==	==
-*-	*-
-</script>
-
+<table>
+<tr>
+<td>
+<textarea id="input">
+**kern
+*clefG2
+*M4/4
+=1-
+1c;
+==
+*-
+</textarea>
+</td>
+<td>
 <div id="output"></div>
+</td>
+</tr>
+</table>
 
 <script>
-	var vrvToolkit = new verovio.toolkit();
-	var Input = document.querySelector("#input");
-	var Output = document.querySelector("#output");
-	document.addEventListener("DOMContentLoaded", displayNotation);
+   var vrvToolkit = new verovio.toolkit();
+   var Input = document.querySelector("#input");
+   var Output = document.querySelector("#output");
+   Input.addEventListener("keyup", displayNotation);
+   document.addEventListener("DOMContentLoaded", displayNotation);
 
-	function displayNotation() {
-		var data = Input.textContent.replace(/^\s+/, "");
-		var options = {
-			inputFormat: "auto",
-			adjustPageHeight: 1,
-			pageHeight: 1000,
-			pageWidth:  1000,
-			scale:  40,
-			font: "Leipzig"
-		};
+   function displayNotation() {
+      var data = Input.value;
+      var options = {
+         inputFormat: "auto",
+         adjustPageHeight: 1,
+         pageHeight: 60000,
+         pageWidth:  2500,
+         scale:  40,    
+         font: "Leipzig"
+      };        
 
-		var svg = vrvToolkit.renderData(data, JSON.stringify(options));
-		Output.innerHTML = svg;
-	}
+      var svg = vrvToolkit.renderData(data, JSON.stringify(options));
+      Output.innerHTML = svg;
+   }    
 </script>
+
+<style>
+textarea { width: 100px; height: 150px; }
+td { vertical-align: baseline; }
+</style>
 
 </body>
 </html>
@@ -92,7 +100,7 @@ where the most recent version of the humdrum-aware verovio script will be
 hosted.  Alternative you can download that copy and store on your website, 
 or compile directly from the [verovio source](https://github.com/rism-ch/verovio) (currently you have to compile from the `develop-humdrum` branch).
 
-Next, on line 30 the verovio toolkit interface is initialized and stored in 
+Next, on line 28 the verovio toolkit interface is initialized and stored in 
 the `vrvToolkit` variable:
 
 ```javascript
@@ -101,29 +109,26 @@ the `vrvToolkit` variable:
 
 <div style="height:30px;"></div>
 
+
 #### Humdrum data
 
-The Humdrum file is stored on lines 10&ndash;25 in a script element
+The Humdrum file is stored on lines 11&ndash;19 in a textarea element
 having the ID `input`:
 
 ```javascript
-<script id="input" type="text/humdrum"> 
-**kern	**kern
-*clefF4	*clefG2
-*k[f#]	*k[f#]
-*M4/4	*M4/4
-=-	=-
-8GL	8ddL
-8AJ	8ccJ
-16BLL	2.b;
-16A	.
-16G	.
-16F#JJ	.
-2G;	.
-==	==
-*-	*-
-</script>
+<textarea id="input">
+**kern
+*clefG2
+*M4/4
+=1-
+1c;
+==
+*-
+</textarea>
 ```
+
+Unlike the [simple](../simple) example, this one displays the Humdrum
+data on the page along with the graphical notation.
 
 The ID for the script could be any text, as long as the ID
 matches the ID on line 31:
@@ -132,7 +137,7 @@ matches the ID on line 31:
 	var Input = document.querySelector("#input");
 ```
 
-In this case the Humdurm data is hidden since it is stored
+In this case the Humdrum data is hidden since it is stored
 in a `<script>` element, but any element, such as a `div` could
 be used to store the Humdrum data visibly on the page.
 
@@ -151,6 +156,8 @@ placed on the same line as the opening tag of the script element.
 The initial the newline can be included harmlessly in the Humdrum
 content if you set the option `inputFormat: "humdrum"`.
 
+
+
 #### Options
 
 Options for the verovio toolkit can be found on the page
@@ -159,15 +166,34 @@ the command line, so when using in JSON data for the JavaScript
 version of the verovio toolkit, change spaces into capitalization.
 For example `--page-height` becomes `pageHeight`.
 
-The `adjustPageHeight` can be used to keep all music in a single 
+The `adjustPageHeight` option can be used to keep all music in a single 
 image by setting the `pageHeight` to a very large value.  If 
 `adjustPageHeight` is enabled, verovio will shrink the SVG image to
 remove blank space at the bottom of the page.  Set `adjustPageHeight`
 to `0` or do not explicitly set the option if you want to have a 
-fixed-height page.
+fixed-height page.  For this example, the `adjustPageHeight` is needed
+because the `pageHeight` is set to `60000`, which is about equivalent 
+to 20 printed pages.  If `adjustPageHeight` were not set to `1`, then
+the SVG image would be very long.  Using a large `pageHeight` like this,
+and then also using `adjustPageHeight` allows for all of the musical
+notation to be displayed on a single page in a single SVG image.
 
-The [verovio](http://www.verovio.org) typesetting engine contains 
-three possible fonts to choose from: `Leipzig`, `Bravura` and `Granville`.
+
+
+#### Dynamic graphical notation
+
+Line 31 is important to allow the webpage to dynamically show the 
+Humdrum data as it changes:
+
+```javascript
+   Input.addEventListener("keyup", displayNotation);
+```
+
+This line sets up the element reference in the `Input` variable to
+call the `displayNotation()` function every time a character is
+typed in the text box.  When a key is released, this function 
+is called go regenerate a new SVG image of the graphical notation.
+
 
 #### Generating the SVG image
 
@@ -188,8 +214,5 @@ line 47:
 ```
 
 <div style="height:100px;"></div>
-
-
-
 
 

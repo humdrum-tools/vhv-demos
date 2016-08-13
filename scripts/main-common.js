@@ -41,12 +41,16 @@ function generateCodeSpaces() {
 		content = content.replace(/^\t\t/gm, "      ");
 		content = content.replace(/^\t/gm, "   ");
 
+		// Have to remove the following condition because 
+		// github jekyll removed the class tags from code elements.
 		// if ((!code) || (!code.className) || code.className.match(/^\s*$/)) {
 		//		continue;
 		//	}
 
+		code.textContent = content;
+
 		var splitcontent = content.split(/[\r\n]/g);
-		if (splitcontent.length > 5) {
+		if (splitcontent.length > 20) {
 			newcolumn = "";
 			content = "";
 			line = 1;
